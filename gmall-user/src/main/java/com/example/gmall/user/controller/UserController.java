@@ -1,9 +1,11 @@
 package com.example.gmall.user.controller;
 
 import com.example.gmall.user.bean.UmsMember;
+import com.example.gmall.user.bean.UmsMemberReceiveAddress;
 import com.example.gmall.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -28,4 +30,11 @@ public class UserController {
         List<UmsMember> umsMembers = userService.getAllUsers();
         return  umsMembers;
     }
+
+    @RequestMapping("/receiveAddress/{memberId}")
+    @ResponseBody
+    public List<UmsMemberReceiveAddress> getReceiveAddressByMemberId(@PathVariable("memberId") String memberId) {
+        return userService.getReceiveAddressByMemberId(memberId);
+    }
+
 }
