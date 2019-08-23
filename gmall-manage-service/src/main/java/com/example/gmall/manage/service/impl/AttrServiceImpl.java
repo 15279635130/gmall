@@ -3,8 +3,10 @@ package com.example.gmall.manage.service.impl;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.example.gmall.beans.PmsBaseAttrInfo;
 import com.example.gmall.beans.PmsBaseAttrValue;
+import com.example.gmall.beans.PmsBaseSaleAttr;
 import com.example.gmall.manage.mapper.PmsBaseAttrInfoMapper;
 import com.example.gmall.manage.mapper.PmsBaseAttrValueMapper;
+import com.example.gmall.manage.mapper.PmsBaseSaleAttrMapper;
 import com.example.gmall.service.AttrService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,9 @@ public class AttrServiceImpl implements AttrService {
 
     @Autowired
     private PmsBaseAttrValueMapper pmsBaseAttrValueMapper;
+
+    @Autowired
+    private PmsBaseSaleAttrMapper pmsBaseSaleAttrMapper;
 
     @Override
     public List<PmsBaseAttrInfo> attrInfoList(String catalog3Id) {
@@ -70,5 +75,11 @@ public class AttrServiceImpl implements AttrService {
         pmsBaseAttrValue.setAttrId(attrId);
         List<PmsBaseAttrValue> attrValues = pmsBaseAttrValueMapper.select(pmsBaseAttrValue);
         return attrValues;
+    }
+
+    @Override
+    public List<PmsBaseSaleAttr> getBaseSaleAttrList() {
+        List<PmsBaseSaleAttr> saleAttrs = pmsBaseSaleAttrMapper.selectAll();
+        return saleAttrs;
     }
 }
